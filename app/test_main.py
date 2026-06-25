@@ -11,7 +11,7 @@ def test_home_endpoint():
     response = client.get('/')
     assert response.status_code == 200
     data = response.get_json()
-    assert data['version'] == '1.0'
+    assert data['version'] == '2.0'
 
 def test_health_endpoint():
     """Saglik kontrolu (/health) 200 donmeli ve status ok olmali"""
