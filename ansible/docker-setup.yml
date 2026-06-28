@@ -1,0 +1,34 @@
+---
+- name: Uygulama sunucusuna Docker kur
+  hosts: app_servers
+  become: yes
+
+  tasks:
+    - name: Paket listesini guncelle
+      apt:
+        update_cache: yes
+
+    - name: Docker'i kur
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Docker servisini baslat ve aktif et
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: ubuntu kullanicisini docker grubuna ekle
+      user:
+        name: ubuntu
+        groups: docker
+        append: yes
+
+    - name: Docker versiyonunu goster
+      command: docker --version
+      register: docker_version
+
+    - name: Docker versiyon ciktisi
+      debug:
+        msg: "{{ docker_version.stdout }}"
