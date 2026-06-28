@@ -6,8 +6,8 @@ app = Flask(__name__)
 @app.route('/')
 def hello():
     return jsonify({
-        "message": "Merhaba! Bu deploy tamamen otomatik geldi 🚀",
-        "version": "3.0"
+        "message": "Merhaba! Kubernetes uzerinde tam otomatik calisiyorum 🚀",
+        "version": "4.0"
     })
 
 @app.route('/health')
